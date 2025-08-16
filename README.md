@@ -37,15 +37,15 @@ This repository showcases my **work, skills, and projects** as a **Software Deve
 
 ## 📂 Project Structure
 Nive-portfolio/
-├── public/ # Static assets (favicon, images)
+├── public/ 
 ├── src/
-│ ├── components/ # Reusable UI components
-│ ├── pages/ # Main pages (Home, Projects, About)
-│ ├── styles/ # Global styles
-│ ├── utils/ # Helper functions
-│ └── App.js # Main app entry
-├── package.json # Dependencies
-└── README.md # You're here!
+│ ├── components/ 
+│ ├── pages/ 
+│ ├── styles/ 
+│ ├── utils/ 
+│ └── App.js 
+├── package.json
+└── README.md 
 
 
 ---
@@ -66,7 +66,7 @@ Open in browser:
 
 This project is licensed under the MIT License – feel free to use and modify it!
 
-📩 Contact Me
+## 📩 Contact Me
 
 💌 Email: nevedha@example.com
 💼 LinkedIn: linkedin.com/in/nevedha
