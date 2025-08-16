@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nevedha N —  Portfolio</title>
+  <meta name="description" content="Nevedha N — AI & Data Science Enthusiast. Portfolio with projects, skills, certifications and contact." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- background container -->
+  <div class="bg-fixed" aria-hidden="true">
+    <div class="gradient-wave"></div>
+    <div class="gradient-wave wave2"></div>
+    <div class="gradient-wave wave3"></div>
+    <canvas id="particles"></canvas>
+  </div>
+
+  <!-- header nav -->
+  <header>
+    <nav class="nav container" role="navigation" aria-label="Primary">
+      <div class="brand">Nevedha N</div>
+      <a href="#hero" class="nav-link active">Home</a>
+      <a href="#about" class="nav-link">About</a>
+      <a href="#skills" class="nav-link">Skills</a>
+      <a href="#projects" class="nav-link">Projects</a>
+      <a href="#certifications" class="nav-link">Certifications</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    
+   <!-- HERO SECTION -->
+<section id="hero" class="hero">
+  <div class="container hero-card reveal">
+    <div>
+      <div class="hero-title">Nevedha N</div>
+      <div class="hero-sub">AI & Data Science Enthusiast — B.Tech Computer Science (Pre-Final Year)</div>
+      <div style="margin-top:14px;color:var(--muted);max-width:900px;margin-left:auto;margin-right:auto">
+        I develop AI and data-driven solutions that make an impact, and I'm seeking opportunities to grow and innovate.
+      </div>
+      <div class="hero-cta">
+        <button class="btn" onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})">View Projects</button>
+        <button class="btn" onclick="window.open('assets/resume.pdf', '_blank')">View Resume</button>
+        <button class="btn secondary" onclick="document.querySelector('#contact').scrollIntoView({behavior:'smooth'})">Contact Me</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- ABOUT -->
+    <section id="about">
+      <div class="container glass about-grid reveal">
+        <div class="avatar" aria-hidden="true">
+          <!-- Replace with your photo: <img src="your-photo.jpg" alt="Nevedha N"> -->
+          <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#6ee7f3"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#g1)"/>
+            <text x="50%" y="50%" fill="#041020" font-size="36" font-weight="800" text-anchor="middle" dominant-baseline="middle">Your Photo</text>
+          </svg>
+        </div>
+        <div class="about-text">
+          <h3>About Me</h3>
+          <p>I'm a pre-final year B.Tech Computer Science student with a strong passion for Artificial Intelligence and Data Science. I enjoy exploring how data-driven insights and intelligent systems can solve real-world problems. My projects combine software development, ML models, and analytics — and I'm actively seeking internship opportunities where I can apply my skills and grow.</p>
+          <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="#projects">See Projects</a>
+            <a class="btn secondary" href="#contact">Hire/Intern me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container reveal">
+    <div style="text-align:center;margin-bottom:18px">
+      <h2 style="font-size:1.6rem;margin-bottom:6px">Technical Skills</h2>
+      <div style="color:var(--muted)">Tools and technologies I work with</div>
+    </div>
+
+    <div class="skills-container">
+      <!-- Programming Languages Box -->
+      <div class="skills-box">
+        <h3 class="skills-box-title">Programming Languages</h3>
+        <div class="skills-list">
+          <div class="skill-item">Python</div>
+          <div class="skill-item">HTML & CSS</div>
+          <div class="skill-item">JavaScript</div>
+        </div>
+      </div>
+
+      <!-- Frameworks & Libraries Box -->
+      <div class="skills-box">
+        <h3 class="skills-box-title">Frameworks & Libraries</h3>
+        <div class="skills-list">
+          <div class="skill-item">Tkinter & CustomTkinter <span class="skill-desc">(Desktop GUI development)</span></div>
+          <div class="skill-item">pandas, NumPy <span class="skill-desc">(Data manipulation & analysis)</span></div>
+          <div class="skill-item">OpenCV <span class="skill-desc">(Emotion detection, camera integration)</span></div>
+          <div class="skill-item">scikit-learn <span class="skill-desc">(Machine Learning algorithms & models)</span></div>
+          <div class="skill-item">Matplotlib <span class="skill-desc">(Data visualization)</span></div>
+        </div>
+      </div>
+
+      <!-- Tools & Platforms Box -->
+      <div class="skills-box">
+        <h3 class="skills-box-title">Tools & Platforms</h3>
+        <div class="skills-list">
+          <div class="skill-item">Git/GitHub <span class="skill-desc">(Version control)</span></div>
+          <div class="skill-item">Jupyter Notebook <span class="skill-desc">(Data analysis & ML development)</span></div>
+          <div class="skill-item">Power BI</div>
+          <div class="skill-item">Excel</div>
+          <div class="skill-item">Tableau</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- PROJECTS -->
+    <section id="projects">
+  <div class="container reveal">
+    <div style="text-align:center;margin-bottom:18px">
+      <h2 style="font-size:1.6rem;margin-bottom:6px">My Projects</h2>
+      <div style="color:var(--muted)">Click any project to view details</div>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1 -->
+      <div class="proj" data-project='{
+        "title":"AI Mood Companion",
+        "desc":"Emotion detection system that recommends songs based on detected mood using computer vision and Spotify API.",
+        "tech":["Python","OpenCV","Tkinter","Spotify API"],
+        "link":"https://github.com/Nevedha228/music-recommendation-face.git",
+        "features":[
+          "Real-time emotion detection",
+          "Spotify playlist recommendations",
+          "Interactive chatbot",
+          "Mini-games for mood improvement"
+        ]
+      }'>
+        <div class="proj-icon">😊</div>
+        <h4>AI Mood Companion</h4>
+        <p>Emotion-aware music recommender system</p>
+        <div class="tags">
+          <span class="tag">Computer Vision</span>
+          <span class="tag">AI</span>
+        </div>
+      </div>
+
+  
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+<section id="certifications">
+  <div class="container reveal">
+    <div style="text-align:center;margin-bottom:18px">
+      <h2 style="font-size:1.6rem;margin-bottom:6px">Certifications</h2>
+      <div style="color:var(--muted)">Click any certificate to view details</div>
+    </div>
+
+    <div class="cert-grid">
+      <!-- Professional Certifications -->
+      <div class="cert-box" onclick="openCertificate('assets/certificates/deloitte-analytics.jpg')">
+        <div class="cert-header">Data Analytics Job Simulation</div>
+        <div class="cert-issuer">Deloitte</div>
+        <div class="cert-status">Completed</div>
+      </div>
+      
+      <div class="cert-box" onclick="openCertificate('assets/certificates/corizo-datascience.jpg')">
+        <div class="cert-header">Data Science Internship</div>
+        <div class="cert-issuer">Corizo</div>
+        <div class="cert-status">Completed</div>
+      </div>
+      
+      <div class="cert-box" onclick="openCertificate('assets/certificates/cisco.jpg')">
+        <div class="cert-header">Introduction to Data Science</div>
+        <div class="cert-issuer">Cisco</div>
+        <div class="cert-status">Completed</div>
+      </div>
+
+      <!-- Technical Courses -->
+      <div class="cert-box" onclick="openCertificate('assets/certificates/infosys-javascript.jpg')">
+        <div class="cert-header">JavaScript Fundamentals</div>
+        <div class="cert-issuer">Infosys</div>
+        <div class="cert-status">Completed</div>
+      </div>
+      
+      <div class="cert-box" onclick="openCertificate('assets/certificates/NEVEDHA-NATARAJAN-Participant-Certificate.jpg')">
+        <div class="cert-header">Python Programming</div>
+        <div class="cert-issuer">IIT Bombay</div>
+        <div class="cert-status">Nov 2024</div>
+      </div>
+      
+      <div class="cert-box" onclick="openCertificate('assets/certificates/nive reactjs.jpg')">
+        <div class="cert-header">ReactJS Development</div>
+        <div class="cert-issuer">Infosys Springboard</div>
+        <div class="cert-status">Mar 2025</div>
+      </div>
+
+      <!-- Hackathon -->
+      <div class="cert-box" onclick="openCertificate('assets/certificates/hackathon.jpg')">
+        <div class="cert-header">Electrothon Participant</div>
+        <div class="cert-issuer">Chennai Institute of Technology</div>
+        <div class="cert-status">mar 2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+<div id="certModal" class="modal">
+  <span class="close" onclick="closeModal()">&times;</span>
+  <div class="modal-content">
+    <iframe id="pdfViewer" style="display:none; width:100%; height:80vh; border:none"></iframe>
+    <img id="certImage" style="display:none; max-width:100%; max-height:80vh">
+    <div id="fallbackMessage" style="display:none; color:white; text-align:center; padding:2rem">
+      <p>Certificate cannot be displayed. <a id="downloadLink" href="#" style="color:var(--accent1)">Download instead</a></p>
+    </div>
+  </div>
+</div>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="container reveal contact-grid">
+        <div class="contact-card contact">
+          <h3 style="margin-bottom:8px">Get in touch</h3>
+          <p style="color:var(--muted);margin-bottom:12px">Email me for internships or collaboration.</p>
+          <div class="socials" style="margin-bottom:12px">
+            <a class="social-btn" href="nevedhan10@gmail.com">✉️ Email</a>
+            <a class="social-btn" href="https://www.linkedin.com/in/nevedha10" target="_blank">🔗 LinkedIn</a>
+            <a class="social-btn" href="https://github.com/Nevedha228" target="_blank">🐙 GitHub</a>
+          </div>
+          <div style="color:var(--muted)">Or send a quick message:</div>
+         <form class="contact-form" id="contactForm">
+  <input type="text" name="name" placeholder="Your name" required>
+  <input type="email" name="email" placeholder="Your email" required>
+  <textarea name="message" rows="5" placeholder="Message" required></textarea>
+  <button type="submit">Send</button>
+  <div id="formStatus"></div>
+</form>
+        </div>
+
+        <div class="contact-card" style="display:flex;flex-direction:column;gap:10px">
+          <h4 style="margin-bottom:4px">Quick Info</h4>
+          <div style="color:var(--muted)"><strong>Location:</strong> India</div>
+          <div style="color:var(--muted)"><strong>Availability:</strong> Internship (open)</div>
+          <div style="color:var(--muted)"><strong>Resume:</strong> <a href="#" style="color:var(--accent1)">Download</a></div>
+          <div style="margin-top:12px">
+            <small style="color:var(--muted)"></small>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Project Overlay -->
+  <div id="overlay" class="overlay" role="dialog" aria-hidden="true">
+    <button class="overlay-close" aria-label="Close" onclick="closeOverlay()">✕</button>
+    <div class="overlay-card container" id="overlay-card" role="document"></div>
+  </div>
+
+  <footer>
+    © <strong>Nevedha N</strong> • Built with ❤️ • 2025
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
