@@ -31,3 +31,14 @@ Nive-portfolio/
 │── script.js         # JavaScript functionality
 │── assets/           # Images & icons
 │── README.md         # Project documentation
+
+---
+##📬 Contact
+
+💌 Feel free to connect with me:
+
+GitHub: @Nevedha228
+
+LinkedIn: www.linkedin.com/in/nevedha10
+
+Email: nevedhan10@gmail.com
