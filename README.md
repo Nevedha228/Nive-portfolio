@@ -3,7 +3,7 @@
 🚀 Welcome to my professional portfolio!  
 This website showcases my **skills, projects, and achievements** as a **Software Developer & Data Enthusiast**.
 
-🔗 **Live Demo:** [Click Here](https://nevedha228.github.io/Nive-portfolio/)
+🔗 **Live Demo:** [Click Here](127.0.0.1:5500/public/index.html)
 
 ---
 
