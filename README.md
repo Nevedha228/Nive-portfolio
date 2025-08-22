@@ -3,7 +3,7 @@
 🚀 Welcome to my professional portfolio!  
 This website showcases my **skills, projects, and achievements** as a **Software Developer & Data Enthusiast**.
 
-🔗 **Live Demo:** [Click Here](127.0.0.1:5500/public/index.html)
+🔗 **Live Demo:** [Click Here](https://nive-portfolio-sbr1.vercel.app)
 
 ---
 
@@ -32,13 +32,5 @@ Nive-portfolio/
 │── assets/           # Images & icons
 │── README.md         # Project documentation
 
----
-##📬 Contact
 
-💌 Feel free to connect with me:
 
-GitHub: @Nevedha228
-
-LinkedIn: www.linkedin.com/in/nevedha10
-
-Email: nevedhan10@gmail.com
