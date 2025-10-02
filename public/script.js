@@ -6,15 +6,18 @@ const sections = document.querySelectorAll('section');
 const overlay = document.getElementById('overlay');
 const overlayCard = document.getElementById('overlay-card');
 
-// Mobile Navigation
+// Enhanced Mobile Navigation with Body Lock
 function initMobileNav() {
   const hamburger = document.getElementById('hamburger');
   const navMenu = document.getElementById('navMenu');
+  const body = document.body;
 
   if (hamburger && navMenu) {
-    hamburger.addEventListener('click', () => {
+    hamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
       hamburger.classList.toggle('active');
       navMenu.classList.toggle('active');
+      body.classList.toggle('menu-open');
     });
 
     // Close mobile menu when clicking on links
@@ -22,6 +25,7 @@ function initMobileNav() {
       link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
+        body.classList.remove('menu-open');
       });
     });
 
@@ -30,6 +34,16 @@ function initMobileNav() {
       if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
         hamburger.classList.remove('active');
         navMenu.classList.remove('active');
+        body.classList.remove('menu-open');
+      }
+    });
+
+    // Close on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+        body.classList.remove('menu-open');
       }
     });
   }
@@ -110,16 +124,22 @@ function updateActiveNav() {
   });
 }
 
-// Scroll animations
+// Enhanced Scroll Animations for Mobile Performance
 function initScrollAnimations() {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('show');
-        observer.unobserve(entry.target);
+        // Only unobserve on desktop for better performance
+        if (window.innerWidth > 768) {
+          observer.unobserve(entry.target);
+        }
       }
     });
-  }, { threshold: 0.1 });
+  }, { 
+    threshold: window.innerWidth < 768 ? 0.05 : 0.1,
+    rootMargin: window.innerWidth < 768 ? '0px 0px -50px 0px' : '0px 0px -100px 0px'
+  });
 
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
@@ -182,7 +202,7 @@ function showFormStatus(message, type) {
   }
 }
 
-// Project modal
+// Enhanced Project Modal for Mobile
 function initProjectModals() {
   document.querySelectorAll('.proj').forEach(project => {
     project.addEventListener('click', () => {
@@ -192,15 +212,24 @@ function initProjectModals() {
         overlayCard.innerHTML = `
           <h2 id="modal-title">${data.title}</h2>
           <p>${data.desc}</p>
-          <div class="tags-container">
+          <div class="tags-container" style="display: flex; gap: 10px; flex-wrap: wrap; margin: 20px 0;">
             ${data.tech.map(t => `<span class="tag">${t}</span>`).join('')}
           </div>
-          <a href="${data.link || '#'}" class="btn" target="_blank">
-            View Project
+          ${data.features ? `
+            <div style="margin: 25px 0;">
+              <h3 style="color: var(--accent1); margin-bottom: 15px;">Key Features:</h3>
+              <ul style="text-align: left; color: var(--muted);">
+                ${data.features.map(feature => `<li style="margin-bottom: 8px;">${feature}</li>`).join('')}
+              </ul>
+            </div>
+          ` : ''}
+          <a href="${data.link || '#'}" class="btn" target="_blank" style="margin-top: 20px;">
+            <i class="fas fa-external-link-alt"></i> View Project
           </a>
         `;
         
         overlay.classList.add('show');
+        document.body.style.overflow = 'hidden'; // Prevent background scroll
         document.getElementById('modal-title').focus();
       } catch (error) {
         console.error('Error opening project modal:', error);
@@ -209,7 +238,7 @@ function initProjectModals() {
   });
 }
 
-// Enhanced Certificate Viewer
+// Enhanced Certificate Modal for Mobile
 function openCertificate(filePath) {
   const modal = document.getElementById('certModal');
   const pdfViewer = document.getElementById('pdfViewer');
@@ -234,6 +263,10 @@ function openCertificate(filePath) {
       // Handle image files
       certImage.style.display = 'block';
       certImage.src = filePath;
+      certImage.style.maxWidth = '100%';
+      certImage.style.height = 'auto';
+      certImage.style.margin = '0 auto';
+      certImage.style.display = 'block';
     }
     modal.style.display = "block";
     document.body.style.overflow = "hidden";
@@ -241,6 +274,7 @@ function openCertificate(filePath) {
     console.error("Error loading certificate:", error);
     fallback.style.display = 'block';
     modal.style.display = "block";
+    document.body.style.overflow = "hidden";
   }
 }
 
@@ -255,51 +289,18 @@ function initCertificateViewer() {
   });
 }
 
+// Enhanced Close Modal
 function closeModal() {
   document.getElementById('certModal').style.display = "none";
   document.body.style.overflow = "auto";
 }
 
-// Initialize everything
-document.addEventListener('DOMContentLoaded', () => {
-  initMobileNav(); // Add this line
-  initParticles();
-  initScrollAnimations();
-  initProjectModals();
-  initCertificateViewer();
-  
-  if (contactForm) {
-    contactForm.addEventListener('submit', handleFormSubmit);
-  }
-
-  window.addEventListener('scroll', updateActiveNav);
-  updateActiveNav(); // Initial call
-});
-
-// Close modals
+// Enhanced Close Overlay with Background Scroll Restoration
 function closeOverlay() {
   overlay.classList.remove('show');
+  document.body.style.overflow = 'auto'; // Restore scrolling
 }
 
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') {
-    closeOverlay();
-    closeModal();
-  }
-});
-
-// Close modal when clicking outside content
-document.addEventListener('click', (e) => {
-  if (e.target === overlay) {
-    closeOverlay();
-  }
-  
-  const certModal = document.getElementById('certModal');
-  if (e.target === certModal) {
-    closeModal();
-  }
-});
 // Toggle certificates visibility
 function toggleCertificates() {
   const certGrid = document.getElementById('certificates-grid');
@@ -353,20 +354,50 @@ function initCertificates() {
   });
 }
 
-// Update your DOMContentLoaded event to include initCertificates
+// Enhanced Touch Interactions
+function initTouchInteractions() {
+  // Add touch-friendly hover effects
+  if ('ontouchstart' in window) {
+    document.querySelectorAll('.proj, .cert-box, .contact-card').forEach(element => {
+      element.style.cursor = 'pointer';
+    });
+  }
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeOverlay();
+    closeModal();
+  }
+});
+
+// Close modal when clicking outside content
+document.addEventListener('click', (e) => {
+  if (e.target === overlay) {
+    closeOverlay();
+  }
+  
+  const certModal = document.getElementById('certModal');
+  if (e.target === certModal) {
+    closeModal();
+  }
+});
+
+// Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
-  // Your existing initialization code
   initMobileNav();
   initParticles();
   initScrollAnimations();
   initProjectModals();
   initCertificateViewer();
-  initCertificates(); // Add this line
+  initCertificates();
+  initTouchInteractions();
   
   if (contactForm) {
     contactForm.addEventListener('submit', handleFormSubmit);
   }
 
   window.addEventListener('scroll', updateActiveNav);
-  updateActiveNav();
+  updateActiveNav(); // Initial call
 });
