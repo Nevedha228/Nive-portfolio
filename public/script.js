@@ -6,6 +6,35 @@ const sections = document.querySelectorAll('section');
 const overlay = document.getElementById('overlay');
 const overlayCard = document.getElementById('overlay-card');
 
+// Mobile Navigation
+function initMobileNav() {
+  const hamburger = document.getElementById('hamburger');
+  const navMenu = document.getElementById('navMenu');
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on links
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+        hamburger.classList.remove('active');
+        navMenu.classList.remove('active');
+      }
+    });
+  }
+}
+
 // Initialize particles
 function initParticles() {
   const canvas = document.getElementById('particles');
@@ -233,6 +262,7 @@ function closeModal() {
 
 // Initialize everything
 document.addEventListener('DOMContentLoaded', () => {
+  initMobileNav(); // Add this line
   initParticles();
   initScrollAnimations();
   initProjectModals();
@@ -269,4 +299,74 @@ document.addEventListener('click', (e) => {
   if (e.target === certModal) {
     closeModal();
   }
+});
+// Toggle certificates visibility
+function toggleCertificates() {
+  const certGrid = document.getElementById('certificates-grid');
+  const seeAllBtn = document.getElementById('seeAllBtn');
+  const hiddenCerts = document.querySelectorAll('.hidden-cert');
+  
+  certGrid.classList.toggle('show-all');
+  seeAllBtn.classList.toggle('show-less');
+  
+  if (certGrid.classList.contains('show-all')) {
+    seeAllBtn.innerHTML = '<i class="fas fa-chevron-up"></i> Show Less';
+    
+    // Animate the appearance of hidden certificates
+    hiddenCerts.forEach((cert, index) => {
+      setTimeout(() => {
+        cert.style.opacity = '0';
+        cert.style.transform = 'translateY(20px)';
+        cert.style.display = 'flex';
+        
+        setTimeout(() => {
+          cert.style.transition = 'all 0.5s ease';
+          cert.style.opacity = '1';
+          cert.style.transform = 'translateY(0)';
+        }, 50);
+      }, index * 100);
+    });
+  } else {
+    seeAllBtn.innerHTML = '<i class="fas fa-chevron-down"></i> See All Certificates';
+    
+    // Hide certificates with animation
+    hiddenCerts.forEach((cert, index) => {
+      setTimeout(() => {
+        cert.style.opacity = '0';
+        cert.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+          cert.style.display = 'none';
+        }, 500);
+      }, index * 50);
+    });
+  }
+}
+
+// Initialize certificates
+function initCertificates() {
+  const hiddenCerts = document.querySelectorAll('.hidden-cert');
+  hiddenCerts.forEach(cert => {
+    cert.style.display = 'none';
+    cert.style.opacity = '0';
+    cert.style.transform = 'translateY(20px)';
+  });
+}
+
+// Update your DOMContentLoaded event to include initCertificates
+document.addEventListener('DOMContentLoaded', () => {
+  // Your existing initialization code
+  initMobileNav();
+  initParticles();
+  initScrollAnimations();
+  initProjectModals();
+  initCertificateViewer();
+  initCertificates(); // Add this line
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', handleFormSubmit);
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+  updateActiveNav();
 });
